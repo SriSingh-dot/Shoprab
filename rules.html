@@ -5,7 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rules — Shoprab</title>
     <link rel="icon" href="spider.png" type="image/png">
-   
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #0b0b0e;
+            color: #e5d9ff;
+            font-family: "Cinzel", serif;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #b36bff;
+            text-shadow: 0 0 15px #8f3dff;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .rule-box {
+            max-width: 900px;
+            margin: auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #d4c6ff;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 10px solid #5200cc;
+            outline: 10px solid #8f3dff;
+            box-shadow: 0 0 0 20px #b36bff inset;
+            pointer-events: none;
+        }
+
+        .arrow-container {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .arrow-container img {
+            width: 40px;
+            cursor: pointer;
+        }
+
+        .arrow-container img.next {
+            width: 29px; 
+        }
+    </style>
 </head>
 <body>
 
