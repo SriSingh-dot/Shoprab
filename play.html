@@ -6,7 +6,14 @@
   <title>Enter — Shoprab</title>
   <link rel="icon" href="spider.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --violet-1: #5200cc;
+      --violet-2: #8f3dff;
+      --violet-3: #b36bff;
+      --muted: #cdb8ff;
+    }
 
     html,body{height:100%;}
     body{
@@ -19,21 +26,27 @@
       justify-content:center;
       padding:32px;
       position:relative;
+
+      background-image:url("web.png");
+      background-repeat:repeat;
+      background-size:260px;
     }
-      
+
     body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  border:10px solid var(--violet-1);
-  outline:8px solid var(--violet-2);
-  box-shadow:
-     inset 0 0 0 18px var(--violet-3),
-     0 0 40px 10px var(--violet-3);
-  pointer-events:none;
-}
+      content:"";
+      position:fixed;
+      inset:0;
+      border:10px solid var(--violet-1);
+      outline:10px solid var(--violet-2);
+      animation:pulseBorder 2.6s infinite ease-in-out;
+      pointer-events:none;
+    }
 
-
+    @keyframes pulseBorder {
+      0% { box-shadow: inset 0 0 0 20px var(--violet-3), 0 0 25px 6px var(--violet-2); }
+      50% { box-shadow: inset 0 0 0 30px var(--violet-3), 0 0 55px 14px var(--violet-3); }
+      100% { box-shadow: inset 0 0 0 20px var(--violet-3), 0 0 25px 6px var(--violet-2); }
+    }
 
     .card{
       text-align:center;
@@ -41,79 +54,123 @@
       width:100%;
     }
 
-    .cursive {
-      font-family: 'Allura', cursive;
-      font-size:3rem;
+    .cursive{
+      font-family:'Allura',cursive;
+      font-size:3.2rem;
       color:#b36bff;
-      text-shadow:0 0 12px #8f3dff;
-      margin:0 0 12px 0;
+      text-shadow:0 0 14px #8f3dff;
+      margin-bottom:12px;
     }
 
     .sub{
-      font-family: 'Allura', cursive;
-      font-size:1.25rem;
-      color:var(--muted);
-      opacity:0.95;
+      font-family:'Allura',cursive;
+      font-size:1.3rem;
+      opacity:.9;
       margin-bottom:28px;
     }
 
     .enter-btn{
       display:inline-block;
-      padding:14px 26px;
-      background: linear-gradient(90deg,var(--violet-2),var(--violet-3));
-      color:#140822;
+      padding:14px 30px;
+      background:linear-gradient(90deg,var(--violet-2),var(--violet-3));
       font-weight:bold;
       border-radius:12px;
       text-decoration:none;
-      box-shadow: 0 8px 30px rgba(139,58,255,0.18);
-      transition:transform .12s ease, box-shadow .12s ease;
-      font-family: 'Cinzel', serif;
-    
+      color:#0b0b0e;
+      font-family:"Cinzel",serif;
+      box-shadow:0 10px 40px rgba(139,58,255,.23);
+      transition:.15s;
     }
 
-    .enter-btn:active{transform:translateY(2px)}
-    .enter-btn:hover{box-shadow: 0 14px 48px rgba(139,58,255,0.28)}
+    .enter-btn:hover{transform:scale(1.08);}
 
     .note{
       margin-top:18px;
-      color:var(--muted);
-      font-size:0.95rem;
+      font-size:.95rem;
+      opacity:.9;
     }
 
     .bottom-links{
       position:fixed;
       left:24px;
       bottom:24px;
-      display:flex;
-      gap:12px;
     }
 
-    :root {
-  --violet-1: #5200cc;
-  --violet-2: #8f3dff;
-  --violet-3: #b36bff;
-  --muted: #cdb8ff;
-}
+    .bottom-links img{width:60px;cursor:pointer;}
 
-
-   
+    #spider-canvas{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:10;
+    }
   </style>
- 
-
 </head>
 <body>
+
+  <canvas id="spider-canvas"></canvas>
+
   <div class="card">
     <h2 class="cursive">Click below to enter the game</h2>
     <div class="sub">(All the powers are in your hands once you sacrifice !)</div>
 
     <a class="enter-btn" href="game.html">Start Now</a>
 
-    <div class="note">You will need to pick at least 5 enhancements. Void currency required will be given.</div>
+    <div class="note">You will need to pick at least 5 enhancements. Void will be provided.</div>
   </div>
 
   <div class="bottom-links">
-    <a href="rules.html" ><img src="leftarrow.png" alt="" width="60px"></a>
-  
+    <a href="rules.html"><img src="leftarrow.png"></a>
   </div>
+
+<script>
+const canvas = document.getElementById("spider-canvas");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+resize();
+addEventListener("resize", resize);
+
+const spiderImg = new Image();
+spiderImg.src = "spider1.png";
+
+let spiders = [];
+for(let i=0;i<10;i++){
+  spiders.push({
+    x:Math.random()*innerWidth,
+    y:Math.random()*innerHeight,
+    dx:(Math.random()*2+0.6)*(Math.random()<0.5?-1:1),
+    dy:(Math.random()*2+0.6)*(Math.random()<0.5?-1:1),
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  spiders.forEach(s=>{
+    s.x += s.dx;
+    s.y += s.dy;
+
+    if(s.x > innerWidth-40 || s.x < 0) s.dx *= -1;
+    if(s.y > innerHeight-40 || s.y < 0) s.dy *= -1;
+
+    ctx.save();
+    ctx.shadowColor="#b36bff";
+    ctx.shadowBlur=20;
+    ctx.drawImage(spiderImg,s.x,s.y,42,42);
+    ctx.restore();
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
 </body>
 </html>
+
+<!--Added keyframes for border effect-->
+<!--Spider-->
