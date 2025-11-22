@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Shoprab</title>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+<style>
+body {
+    margin:0;
+    background:#0b0b0e;
+    font-family:"Cinzel", serif;
+    color:#e5d9ff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:40px 20px;
+}
+
+h1 {
+    font-family:'Allura', cursive;
+    font-size:3.5rem;
+    color:#b36bff;
+    text-shadow:0 0 20px #8f3dff;
+    margin-bottom:5px;
+}
+
+.sub {
+    font-size:1.25rem;
+    margin-bottom:26px;
+    color:#cdb8ff;
+}
+
+#void-counter {
+    font-size:1.4rem;
+    margin-bottom:28px;
+    padding:10px 22px;
+    border:2px solid #b36bff;
+    border-radius:10px;
+    text-shadow:0 0 10px #8f3dff;
+}
+
+.list-container {
+    display:flex;
+    justify-content:space-between;
+    max-width:900px;
+    width:100%;
+    gap:30px;
+    margin-bottom:30px;
+}
+
+ul {
+    list-style:none;
+    padding:0;
+}
+
+li {
+    background:rgba(120,80,180,0.28);
+    padding:10px 14px;
+    margin-bottom:12px;
+    border-radius:12px;
+    border:2px solid #8f3dff;
+    box-shadow:0 0 12px rgba(179,107,255,0.25);
+}
+
+#total {
+    font-weight:bold;
+    font-size:1.3rem;
+    margin-bottom:25px;
+}
+
+button {
+    padding:14px 38px;
+    font-size:1.2rem;
+    border:none;
+    border-radius:12px;
+    font-family:"Cinzel", serif;
+    cursor:pointer;
+    margin-top:12px;
+    background:linear-gradient(90deg,#8f3dff,#b36bff);
+    color:#140822;
+    box-shadow:0 0 25px rgba(139,58,255,0.5);
+    transition:.2s;
+}
+
+button:hover {
+    transform:scale(1.06);
+    box-shadow:0 0 40px rgba(179,107,255,0.7);
+}
+
+#accept {
+    margin-bottom:18px;
+}
+</style>
+</head>
+<body>
+
+<h1>Accept Powers</h1>
+<div class="sub">Are you really sure you want to sacrifice this just for powers?</div>
+
+<div id="void-counter">Void Remaining: 10</div>
+
+<div class="list-container">
+    <div>
+        <h3>Powers Selected</h3>
+        <ul id="powers-list"></ul>
+    </div>
+    <div>
+        <h3>Sacrifices</h3>
+        <ul id="sacrifice-list"></ul>
+    </div>
+</div>
+
+<div id="total"></div>
+
+<button id="accept">Accept Powers</button>
+<button id="back">Back to Shop</button>
+
+<script>
+let selectedPowers = JSON.parse(localStorage.getItem("selectedPowers")) || [];
+
+const powersList = document.getElementById("powers-list");
+const sacrificeList = document.getElementById("sacrifice-list");
+const totalDisplay = document.getElementById("total");
+
+let totalCost = 0;
+
+selectedPowers.forEach(power => {
+    const liPower = document.createElement("li");
+    liPower.textContent = `${power.name} — Cost: ${power.cost} voids`;
+    powersList.appendChild(liPower);
+
+    const liSacrifice = document.createElement("li");
+    liSacrifice.textContent = power.sacrifice;
+    sacrificeList.appendChild(liSacrifice);
+
+    totalCost += power.cost;
+});
+
+totalDisplay.textContent = `Total Void Spent: ${totalCost}`;
+document.getElementById("void-counter").textContent = `Void Remaining: ${10 - totalCost}`;
+
+document.getElementById("accept").addEventListener("click", () => {
+    localStorage.removeItem("selectedPowers");
+    window.location.href = "thank.html";
+});
+
+document.getElementById("back").addEventListener("click", () => {
+    window.location.href = "game.html";
+});
+</script>
+
+</body>
+</html>
