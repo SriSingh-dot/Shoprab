@@ -4,9 +4,94 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thank You — Shoprab</title>
+<link rel="icon" href="spider.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 40px;
+    background: #0b0b0e;
+    font-family: 'Cinzel', serif;
+    color: #e5d9ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  .glow-box {
+    background: rgba(120, 80, 180, 0.3);
+    padding: 36px 28px;
+    border-radius: 18px;
+    border: 2px solid #8f3dff;
+    box-shadow: 0 0 25px #8f3dff, 0 0 50px #b36bff inset;
+    text-align: center;
+    max-width: 800px;
+    animation: pulseGlow 2.5s ease-in-out infinite alternate;
+  }
+
+  h1 {
+    font-family: 'Allura', cursive;
+    font-size: 3rem;
+    color: #b36bff;
+    text-shadow: 0 0 12px #8f3dff, 0 0 20px #b36bff;
+    margin-bottom: 18px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #d4c6ff;
+    line-height: 1.6;
+  }
+
+  .back-btn {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 12px 28px;
+    font-size: 1.2rem;
+    font-family: 'Cinzel', serif;
+    color: #140822;
+    background: linear-gradient(90deg, #8f3dff, #b36bff);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(139, 58, 255, 0.5);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .back-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(179, 107, 255, 0.7);
+  }
+
+  @keyframes pulseGlow {
+    0% {
+      box-shadow: 0 0 20px #8f3dff, 0 0 40px #b36bff inset;
+    }
+    50% {
+      box-shadow: 0 0 32px #b36bff, 0 0 60px #8f3dff inset;
+    }
+    100% {
+      box-shadow: 0 0 20px #8f3dff, 0 0 40px #b36bff inset;
+    }
+  }
+</style>
 </head>
 <body>
-<h1>Thank You for the Sacrifices for Powers!</h1>
+
+<div class="glow-box">
+  <h1>Thank You for the Sacrifices for Powers!</h1>
+  <p>
+    Hey! I really appreciate you joining this website for a psychological game. 
+    I promise that I did not make this for any black-magic purpose. It is just a fun mental and psychological game. 
+    <br><br>
+    Hope You Have A Great Day!!!
+  </p>
+  <a href="index.html" class="back-btn">Back to Start</a>
+</div>
 
 </body>
 </html>
+
