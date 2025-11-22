@@ -1,13 +1,212 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Game Start — Shoprab</title>
-  <link rel="icon" href="spider.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
-  </head>
-  <body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop of Powers — Void Exchange</title>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  background: #0b0b0e;
+  font-family: "Cinzel", serif;
+  color: #e5d9ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
 
-  </body>
+h1 {
+  font-family: 'Allura', cursive;
+  font-size: 3.5rem;
+  color: #b36bff;
+  text-shadow: 0 0 20px #8f3dff;
+  margin-bottom: 5px;
+}
+
+.sub {
+  font-size: 1.25rem;
+  margin-bottom: 26px;
+  color: #cdb8ff;
+}
+
+#void-counter {
+  font-size: 1.4rem;
+  margin-bottom: 28px;
+  padding: 10px 22px;
+  border: 2px solid #b36bff;
+  border-radius: 10px;
+  text-shadow: 0 0 10px #8f3dff;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1100px;
+}
+
+.card {
+  background: rgba(120, 80, 180, 0.28);
+  border: 2px solid #8f3dff;
+  padding: 18px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: 0.25s;
+  text-align: center;
+  box-shadow: 0 0 18px rgba(139, 58, 255, 0.45);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 32px #b36bff;
+}
+
+.card.selected {
+  border-color: #e3d0ff;
+  box-shadow: 0 0 38px #e3d0ff;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #efe6ff;
+}
+
+.card p {
+  font-size: 0.95rem;
+  margin: 4px 0;
+  opacity: 0.9;
+}
+
+#checkout {
+  margin-top: 35px;
+  padding: 14px 38px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  font-family: "Cinzel", serif;
+  background: linear-gradient(90deg, #8f3dff, #b36bff);
+  color: #140822;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(139, 58, 255, 0.5);
+  transition: .2s;
+}
+
+#checkout:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 40px rgba(179, 107, 255, 0.7);
+}
+</style>
+</head>
+<body>
+
+<h1>Pick your potion of power</h1>
+<div class="sub">Choose wisely. Every gain demands a sacrifice.</div>
+<div id="void-counter">Void: 10</div>
+
+<div class="container">
+  <div class="card" data-name="Mind Reading" data-cost="3" data-sacrifice="You will forget your happiest memories">
+    <h3>Mind Reading</h3>
+    <p>Cost: 3 voids</p>
+    <p>Sacrifice: You will forget your happiest memories</p>
+  </div>
+
+  <div class="card" data-name="Immortality" data-cost="3" data-sacrifice="You will never form new real bonds">
+    <h3>Immortality</h3>
+    <p>Cost: 3 voids</p>
+    <p>Sacrifice: You will never form new real bonds</p>
+  </div>
+
+  <div class="card" data-name="Unshakable Confidence" data-cost="3" data-sacrifice="You will hurt loved ones unknowingly">
+    <h3>Unshakable Confidence</h3>
+    <p>Cost: 3 voids</p>
+    <p>Sacrifice: You will hurt loved ones unknowingly</p>
+  </div>
+
+  <div class="card" data-name="Night Vision" data-cost="2" data-sacrifice="Nightmares will replace dreams">
+    <h3>Night Vision</h3>
+    <p>Cost: 2 voids</p>
+    <p>Sacrifice: Nightmares will replace dreams</p>
+  </div>
+
+  <div class="card" data-name="No Stress" data-cost="2" data-sacrifice="Your emotions will fade over time">
+    <h3>No Stress</h3>
+    <p>Cost: 2 voids</p>
+    <p>Sacrifice: Your emotions will fade over time</p>
+  </div>
+
+  <div class="card" data-name="Healing Touch" data-cost="2" data-sacrifice="You will forget daily moments">
+    <h3>Healing Touch</h3>
+    <p>Cost: 2 voids</p>
+    <p>Sacrifice: You will forget daily moments</p>
+  </div>
+
+  <div class="card" data-name="Untouchable Luck" data-cost="2" data-sacrifice="Someone else suffers for your luck">
+    <h3>Untouchable Luck</h3>
+    <p>Cost: 2 voids</p>
+    <p>Sacrifice: Someone else suffers for your luck</p>
+  </div>
+
+  <div class="card" data-name="Assured Future Success" data-cost="3" data-sacrifice="You will never rest again">
+    <h3>Assured Future Success</h3>
+    <p>Cost: 3 voids</p>
+    <p>Sacrifice: You will never rest again</p>
+  </div>
+
+  <div class="card" data-name="Limitless Creativity" data-cost="2" data-sacrifice="Your time perception will collapse">
+    <h3>Limitless Creativity</h3>
+    <p>Cost: 2 voids</p>
+    <p>Sacrifice: Your time perception will collapse</p>
+  </div>
+</div>
+
+<button id="checkout">Checkout</button>
+
+<script>
+let voidAmount = 10;
+let selectedPowers = [];
+
+const voidCounter = document.getElementById("void-counter");
+voidCounter.textContent = "Void: " + voidAmount;
+
+const cards = document.querySelectorAll(".card");
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+    const powerName = card.getAttribute("data-name");
+    const cost = parseInt(card.getAttribute("data-cost"));
+    const sacrifice = card.getAttribute("data-sacrifice");
+
+    if (card.classList.contains("selected")) {
+      card.classList.remove("selected");
+      voidAmount += cost;
+      selectedPowers = selectedPowers.filter(p => p.name !== powerName);
+    } else {
+      if (voidAmount - cost < 0) {
+        alert("Not enough Void!");
+        return;
+      }
+      card.classList.add("selected");
+      voidAmount -= cost;
+      selectedPowers.push({ name: powerName, cost: cost, sacrifice: sacrifice });
+    }
+
+    voidCounter.textContent = "Void: " + voidAmount;
+    localStorage.setItem("selectedPowers", JSON.stringify(selectedPowers));
+  });
+});
+
+document.getElementById("checkout").addEventListener("click", () => {
+  if (selectedPowers.length === 0) {
+    alert("You haven't selected any powers!");
+    return;
+  }
+  localStorage.setItem("selectedPowers", JSON.stringify(selectedPowers));
+  window.location.href = "checkout.html";
+});
+</script>
+</body>
 </html>
+
